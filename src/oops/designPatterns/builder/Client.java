@@ -15,8 +15,10 @@ public class Client {
 		System.out.println(sub1.getCondiments());
 		System.out.println(sub1.getFillings());
 		System.out.println(sub1.getVeggies());
-		
 
+		StringBuilderImpl sb = new StringBuilderImpl("Hello").append(" ").append("World");
+		String res = sb.toString();
+		System.out.println(res);
 	}
 
 }
