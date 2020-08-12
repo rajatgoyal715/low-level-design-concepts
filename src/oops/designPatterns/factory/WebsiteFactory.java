@@ -6,18 +6,21 @@ import oops.designPatterns.factory.websites.Website;
 
 public class WebsiteFactory {
 
-	public static Website getWebsite(WebsiteType siteType) {
+	private static final Blog blog = new Blog();
+	private static final Shop shop = new Shop();
+
+	public static Website getWebsite(WebsiteType siteType) throws Exception {
 		switch(siteType) {
 			case BLOG : {
-				return new Blog();
+				return blog;
 			}
 		
 			case SHOP : {
-				return new Shop();
+				return shop;
 			}
 			
 			default : {
-				return null;
+				throw new Exception("Could not find any website for this website type: " + siteType);
 			}
  		}
 	}

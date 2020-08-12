@@ -5,13 +5,11 @@ import oops.designPatterns.factory.websites.Website;
 
 public class FactoryDemo {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+
 		Blog site = (Blog) WebsiteFactory.getWebsite(WebsiteType.BLOG);
-		
-		System.out.println(site.getPages());
-		
 		//site = WebsiteFactory.getWebsite(WebsiteType.SHOP);
-		
+
 		System.out.println(site.getPages());
 	}
 
