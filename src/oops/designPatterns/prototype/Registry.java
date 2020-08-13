@@ -12,12 +12,28 @@ import oops.designPatterns.prototype.items.Movie;
 public class Registry {
 
 	private Map<String, Item> items = new HashMap<String, Item>();
-	
-	public Registry() {
+
+	private static Registry registry = null;
+
+	public static Registry getInstance() {
+		if (registry == null) {
+			synchronized (Registry.class) {
+				if (registry == null) {
+					registry = new Registry();
+				}
+			}
+		}
+		return registry;
+	}
+
+	private Registry() {
 		loadItems();
 	}
 	
-	public Item createItem (String type) {
+	public Item createItem (String type) throws Exception {
+		if (!items.containsKey(type)) {
+			throw new Exception("Item is not supported of type: " + type);
+		}
 		Item item = null;
 		
 		try {
@@ -37,11 +53,11 @@ public class Registry {
 		artmovie.setRuntime("2 hours");
 		items.put("ArtMovie", artmovie);
 		
-		Movie shortMovies = new Movie();
-		shortMovies.setTitle("Basic Movie");
-		shortMovies.setPrice(24.99);
-		shortMovies.setRuntime("2 hours");
-		items.put("ShortMovie", shortMovies);
+		Movie shortMovie = new Movie();
+		shortMovie.setTitle("Basic Movie");
+		shortMovie.setPrice(24.99);
+		shortMovie.setRuntime("2 hours");
+		items.put("ShortMovie", shortMovie);
 		
 		Book book = new Book();
 		book.setNumberOfPages(335);
