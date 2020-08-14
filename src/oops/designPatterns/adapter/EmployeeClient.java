@@ -25,7 +25,9 @@ public class EmployeeClient {
 		
 		//We have to add the data of all the employees to the employees list
 		//But it only accepts objects of type Employee
-		
+		employees.add(employeeFromDB);
+		employees.add(new EmployeeAdapterLdap(employeeFromLdap));
+		employees.add(new EmployeeAdapterCSV(employeeFromCSV));
 		
 		return employees;
 		
